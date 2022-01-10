@@ -3,6 +3,9 @@
 	"version": "1.0.0",
 	"description": "Chingu Voyage 36 - Bears Team 13 Backend",
 	"main": "index.js",
+	"engines": {
+		"node": "16.x"
+	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "nodemon index.ts"
@@ -21,8 +24,11 @@
 	"dependencies": {
 		"@types/express": "^4.17.13",
 		"@types/node": "^17.0.8",
+		"@types/pg": "^8.6.3",
+		"cors": "^2.8.5",
 		"dotenv": "^10.0.0",
-		"express": "^4.17.2"
+		"express": "^4.17.2",
+		"pg": "^8.7.1"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.15",
