@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.ts"
+    "start": "node index.ts",
+    "start:dev": "nodemon index.ts"
   },
   "repository": {
     "type": "git",
@@ -32,7 +33,6 @@
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   }
