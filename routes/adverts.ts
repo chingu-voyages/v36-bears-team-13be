@@ -5,10 +5,10 @@ const router: express.Router = express.Router();
 
 router.get('/', async (req, res) => {
 	try {
-		// get ads from our postgress db
+		//Get adverts from DB
 		const result = await getAllAdverts();
-		const results = { results: result ? result.rows : null };
-		res.send(results);
+		// const results = { results: result ? result.rows : null };
+		res.send(result);
 	} catch (err) {
 		console.error(err);
 		res.send('Error ' + err);

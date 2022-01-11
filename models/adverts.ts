@@ -1,9 +1,9 @@
 // postgress pool
-const query = require('../database/config');
+const { query } = require('../database/config');
 
 export default async function getAllAdverts() {
 	try {
-		const sqlString: string = 'SELECT * FROM adverts;';
+		const sqlString: string = 'SELECT * FROM advert;';
 		const adverts = await query(sqlString);
 		return adverts.rows[0];
 	} catch (error) {
