@@ -7,7 +7,7 @@ const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_P
 console.log("asd", process.env.DB_USER);
 const pool = new Pool({
   connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-  ssl: { rejectUnauthorized: false },
+  ssl: process.env.DATABASE_URL ? true : false,
 });
 
 export default pool;
