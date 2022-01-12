@@ -1,40 +1,41 @@
-CREATE TABLE nanny(
+CREATE TABLE IF NOT EXISTS user(
     id INTEGER NOT NULL,
-    username VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
-    updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
-    is_verified BOOLEAN NOT NULL,
-    avatar VARCHAR(255) NOT NULL,
-    firstname VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
+    username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    phone_number TEXT  UNIQUE,
+    date_created TIMESTAMP  NOT NULL,
+    date_updated TIMESTAMP  NOT NULL,
+    is_verified BOOLEAN ,
+    avatar TEXT ,
+    firstname TEXT NOT NULL,
+    lastname TEXT NOT NULL,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE client(
+CREATE TABLE IF NOT EXISTS user_role(
+    userrole_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL REFERENCES user(id),
+    role_id INTEGER NOT NULL REFERENCES role(id),
+    PRIMARY KEY (userrole_id)
+);
+
+CREATE TABLE IF NOT EXISTS nanny_profile(
+    profile_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL REFERENCES user(id),
+    rating INTEGER ,
+    reviews TEXT,
+    PRIMARY KEY (profile_id)
+);
+
+CREATE TABLE IF NOT EXISTS role(
     id INTEGER NOT NULL,
-    username VARCHAR(255) NOT NULL,
-    firstname VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
-    updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
-    phone_number VARCHAR(255) NOT NULL,
-    is_verified VARCHAR(255) NOT NULL,
+    role_name TEXT NOT NULL,
+    date_created TIMESTAMP  NOT NULL,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE client_listings(
-    id INTEGER NOT NULL,
-    created_by INTEGER NOT NULL REFERENCES client(id) ON DELETE CASCADE,
-    created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
-    PRIMARY KEY (id)
-);
 
-CREATE TABLE nanny_listing_transactions(
-    id INTEGER NOT NULL,
-    nany_id INTEGER NOT NULL REFERENCES nanny(id),
-    listing_id INTEGER NOT NULL REFERENCES client_listings(id),
-    PRIMARY KEY (id)
-);
+
+
+
 
