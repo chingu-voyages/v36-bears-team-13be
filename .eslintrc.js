@@ -25,16 +25,6 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'error',
     'linebreak-style': 0,
-    'import/order': [
-      'error',
-      {
-        'newlines-between': 'never',
-        groups: [
-          ['builtin', 'external'],
-          ['internal', 'parent', 'sibling', 'index'],
-        ],
-      },
-    ],
   },
   settings: {
     'import/parsers': {
