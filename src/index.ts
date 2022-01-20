@@ -1,6 +1,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv-safe';
-import advertsRouter from './routes/adverts';
+import authRouter from '@src/routes/auth';
+import advertsRouter from '@src/routes/adverts';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routers
 app.use('/adverts', advertsRouter);
+app.use('/auth', authRouter);
 
 // Handling '/' Request
 app.get('/', (req, res): void => {
