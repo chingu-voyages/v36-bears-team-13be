@@ -32,4 +32,24 @@ router.post('/register', async (req, res): Promise<void> => {
   }
 });
 
+router.post('/login', async (req, res): Promise<void> => {
+  const { email, password }: { email: string; password: string } = req.body;
+  try {
+    const usersFound = await getUserByEmail(email);
+    if (usersFound.length === 0) {
+      res.status(401).json('E-mail is not registered ');
+      return;
+    }
+    const isPasswordValid = await bcrypt.compare(password, usersFound[0].password);
+    if (!isPasswordValid) {
+      res.status(401).json('Password is not correct');
+      return;
+    }
+    const jwtToken = generateJwtToken(usersFound[0].id);
+    res.json({ jwtToken });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export default router;
