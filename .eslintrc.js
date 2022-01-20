@@ -25,6 +25,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'error',
     'linebreak-style': 0,
+    '@typescript-eslint/no-var-requires': 'off',
   },
   settings: {
     'import/parsers': {

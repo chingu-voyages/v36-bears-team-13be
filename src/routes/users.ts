@@ -1,9 +1,9 @@
 import express from 'express';
-import { getAllUsers } from '../models/adverts';
+import getAllUsers from '../models/users';
 
 const router: express.Router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res): Promise<void> => {
   try {
     const result = await getAllUsers();
     res.json(result);
