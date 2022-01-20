@@ -1,11 +1,8 @@
 import { User } from '@src/utils/databaseTypes';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-import { User } from '@src/utils/databaseTypes';
-
 const { query } = require('../database/config');
 
-export default async function getAllUsers(): Promise<User> {
+export async function getAllUsers(): Promise<User> {
   const sqlString = 'SELECT * FROM "user";';
   const adverts = await query(sqlString);
   return adverts.rows[0];
