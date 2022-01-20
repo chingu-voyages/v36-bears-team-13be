@@ -5,7 +5,7 @@ const { query } = require('../database/config');
 export async function getAllUsers(): Promise<User> {
   const sqlString = 'SELECT * FROM "user";';
   const adverts = await query(sqlString);
-  return adverts.rows[0];
+  return adverts.rows;
 }
 
 export async function getUserByEmail(email: string): Promise<Array<User>> {
