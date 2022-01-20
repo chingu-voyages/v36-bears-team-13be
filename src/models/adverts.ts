@@ -7,7 +7,7 @@ type IAdvert = {
   description: string;
 };
 
-export default async function getAllAdverts(): Promise<IAdvert> {
+export default async function getAllAdverts(): Promise<unknown> {
   const sqlString = 'SELECT * FROM advert;';
   const adverts = await query(sqlString);
   return adverts.rows[0];

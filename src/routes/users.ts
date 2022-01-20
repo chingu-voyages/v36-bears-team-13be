@@ -1,22 +1,16 @@
 import express from 'express';
-import getAllAdverts from '../models/adverts';
+import { getAllUsers } from '../models/adverts';
 
 const router: express.Router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    //  Get adverts from DB
-    const result = await getAllAdverts();
-    // const results = { results: result ? result.rows : null };
+    const result = await getAllUsers();
     res.json(result);
   } catch (err) {
     console.error(err);
     res.send(`Error ${err}`);
   }
-});
-
-router.post('/', (req, res) => {
-  res.json({});
 });
 
 export default router;
