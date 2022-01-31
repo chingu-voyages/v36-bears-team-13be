@@ -7,7 +7,8 @@
     "node": "16.x"
   },
   "scripts": {
-    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
+    "start": "node ./dist/src/index.js",
+    "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
     "dev": "nodemon",
     "build": "tsc -p tsconfig.prod.json",
     "test": "jest",
