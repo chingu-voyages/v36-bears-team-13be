@@ -29,3 +29,9 @@ export async function addUser(user: User): Promise<number> {
   ]);
   return ids[0].id;
 }
+
+export async function updateUser(user: User): Promise<number> {
+  const sqlString = '';
+  const { rows: ids }: { rows: Array<{ id: number }> } = await query(sqlString, []);
+  return ids[0].id;
+}
