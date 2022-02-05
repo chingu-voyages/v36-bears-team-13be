@@ -1,5 +1,6 @@
+import { User } from '@src/utils/databaseTypes';
 import express from 'express';
-import { getAllUsers } from '../models/users';
+import { getAllUsers, updateUser } from '../models/users';
 
 const router: express.Router = express.Router();
 
@@ -7,6 +8,20 @@ router.get('/', async (req, res): Promise<void> => {
   try {
     const result = await getAllUsers();
     res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.send(`Error ${err}`);
+  }
+});
+router.put('/', async (req, res): Promise<void> => {
+  try {
+    const id = req.header('id');
+    const newUserProperties = req.body;
+    const updatedUser: User = await updateUser(newUserProperties, Number(id));
+    res.json({
+      message: 'User updated',
+      payload: updatedUser,
+    });
   } catch (err) {
     console.error(err);
     res.send(`Error ${err}`);

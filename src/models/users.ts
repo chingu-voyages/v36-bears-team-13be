@@ -30,8 +30,21 @@ export async function addUser(user: User): Promise<number> {
   return ids[0].id;
 }
 
-export async function updateUser(user: User): Promise<number> {
-  const sqlString = '';
-  const { rows: ids }: { rows: Array<{ id: number }> } = await query(sqlString, []);
-  return ids[0].id;
+export async function updateUser(newUserProperties: Partial<User>, id: number): Promise<User> {
+  const { rows: oldUserData }: { rows: Array<User> } = await query('SELECT * FROM "user" WHERE id=$1', [id]);
+  const newUser = { ...oldUserData[0], ...newUserProperties };
+  const sqlString =
+    'UPDATE "user" SET username=$1, first_name=$2, last_name=$3, email=$4, password=$5, role=$6, gender=$7, phone=$8 WHERE id=$9 RETURNING *;';
+  const { rows: updatedUser }: { rows: Array<User> } = await query(sqlString, [
+    newUser.username,
+    newUser.first_name,
+    newUser.last_name,
+    newUser.email,
+    newUser.password,
+    newUser.role,
+    newUser.gender,
+    newUser.phone,
+    id,
+  ]);
+  return updatedUser[0];
 }
