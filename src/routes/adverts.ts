@@ -16,18 +16,23 @@ router.get('/', async (req, res): Promise<void> => {
     });
   } catch (err) {
     console.error(err);
-    res.send(`Error ${err}`);
+    res.status(500).send(`Error ${err}`);
   }
 });
 
 router.post('/', async (req, res): Promise<void> => {
-  const newAdvert: Advert = req.body;
-  const newAdvertId = await addNewAdvert(newAdvert);
-  res.json({
-    success: true,
-    message: 'Added a new advert',
-    payload: newAdvertId,
-  });
+  try {
+    const newAdvert: Advert = req.body;
+    const newAdvertId = await addNewAdvert(newAdvert);
+    res.json({
+      success: true,
+      message: 'Added a new advert',
+      payload: newAdvertId,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(`Error:${error}`);
+  }
 });
 
 export default router;

@@ -10,13 +10,13 @@ router.get('/', async (req, res): Promise<void> => {
     res.json(result);
   } catch (err) {
     console.error(err);
-    res.send(`Error ${err}`);
+    res.status(500).send(`Error ${err}`);
   }
 });
 router.put('/', async (req, res): Promise<void> => {
   try {
     const id = req.header('id');
-    const newUserProperties = req.body;
+    const newUserProperties: Partial<User> = req.body;
     const updatedUser: User = await updateUser(newUserProperties, Number(id));
     res.json({
       message: 'User updated',
@@ -24,7 +24,7 @@ router.put('/', async (req, res): Promise<void> => {
     });
   } catch (err) {
     console.error(err);
-    res.send(`Error ${err}`);
+    res.status(500).send(`Error ${err}`);
   }
 });
 
